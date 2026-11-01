@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entrená lectura de mercado vela por vela, documentá decisiones y mejorá tu proceso." />
+  <title>Chart Replay Lab</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-mark"><i></i><i></i><i></i></span><span>CHART REPLAY <b>LAB</b></span></a>
+    <div class="top-actions"><span class="status"><i></i> Sesión local</span><button class="icon-btn" id="themeBtn" aria-label="Cambiar tema">◐</button></div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div><p class="eyebrow">ENTRENAMIENTO DELIBERADO · SIN DINERO REAL</p><h1>Leé el mercado.<br><em>Una vela a la vez.</em></h1><p class="hero-copy">Practicá contexto, estructura y ejecución sin mirar el futuro. Cada decisión queda registrada para que midas tu proceso, no tu suerte.</p></div>
+      <div class="score-card"><div class="score-ring"><strong id="globalScore">—</strong><span>SCORE</span></div><div><small>CALIDAD DE PROCESO</small><b id="scoreLabel">Completá tu primera decisión</b><p id="scoreSub">Tu evaluación aparecerá acá.</p></div></div>
+    </section>
+
+    <section class="workspace">
+      <div class="chart-panel">
+        <div class="chart-head">
+          <div class="symbol"><span>BTC</span><div><b>BTC / USDT</b><small>Bitcoin · Replay simulado</small></div></div>
+          <div class="quote"><small>PRECIO ACTUAL</small><b id="price">—</b><span id="change">—</span></div>
+          <div class="timeframes" aria-label="Temporalidad"><button data-tf="15m">15m</button><button data-tf="1H" class="active">1H</button><button data-tf="4H">4H</button></div>
+        </div>
+        <div class="chart-wrap"><canvas id="chart"></canvas><div class="chart-badge">VELA <b id="candleNo">30</b> / 100</div></div>
+        <div class="replay-bar">
+          <div class="transport"><button id="resetBtn" title="Reiniciar">↺</button><button id="prevBtn" title="Vela anterior">‹</button><button class="play" id="playBtn" title="Reproducir">▶</button><button id="nextBtn" title="Siguiente vela">›</button></div>
+          <div class="progress"><div><span id="progressFill"></span></div><small id="progressText">30% revelado</small></div>
+          <div class="speed"><span>VELOCIDAD</span><button data-speed="1500">0.5×</button><button data-speed="850" class="active">1×</button><button data-speed="400">2×</button></div>
+        </div>
+      </div>
+
+      <aside class="decision-panel">
+        <div class="panel-title"><div><span>PASO 01</span><h2>Tu lectura</h2></div><span class="kbd">Vela <b id="decisionCandle">30</b></span></div>
+        <label>¿QUÉ HARÍAS AHORA?</label>
+        <div class="decision-grid"><button data-action="LONG" class="long"><span>↗</span><b>LONG</b><small>Buscar compra</small></button><button data-action="WAIT" class="wait"><span>—</span><b>ESPERAR</b><small>Sin entrada</small></button><button data-action="SHORT" class="short"><span>↘</span><b>SHORT</b><small>Buscar venta</small></button></div>
+        <label for="confidence">NIVEL DE CONFIANZA <b id="confidenceValue">60%</b></label>
+        <input id="confidence" type="range" min="20" max="100" step="10" value="60" />
+        <div class="range-labels"><span>Baja</span><span>Media</span><span>Alta</span></div>
+        <label for="thesis">TESIS / CONTEXTO <span>OPCIONAL</span></label>
+        <textarea id="thesis" maxlength="220" placeholder="Ej: Barrido de liquidez + CHOCH alcista en zona de demanda..."></textarea>
+        <div class="tags"><button data-tag="Estructura">+ Estructura</button><button data-tag="Liquidez">+ Liquidez</button><button data-tag="Zona HTF">+ Zona HTF</button></div>
+        <button id="saveBtn" class="save-btn">REGISTRAR DECISIÓN <span>↵</span></button>
+        <p class="privacy">⌁ Todo se guarda en tu navegador.</p>
+      </aside>
+    </section>
+
+    <section class="review">
+      <div class="section-head"><div><p class="eyebrow">FEEDBACK LOOP</p><h2>Revisá tu proceso</h2></div><button id="clearBtn" class="text-btn">Limpiar sesión</button></div>
+      <div class="metrics"><article><small>DECISIONES</small><b id="decisionCount">0</b><p>registradas</p></article><article><small>DISCIPLINA</small><b id="discipline">—</b><p>esperas justificadas</p></article><article><small>CONFIANZA MEDIA</small><b id="avgConfidence">—</b><p>calibración</p></article><article><small>CONSISTENCIA</small><b id="consistency">—</b><p>calidad de tesis</p></article></div>
+      <div class="journal"><div class="journal-head"><b>DIARIO DE DECISIONES</b><span>Resultado evaluado 3 velas después</span></div><div id="emptyState" class="empty"><span>⌁</span><b>Todavía no hay decisiones</b><p>Avanzá por el gráfico y registrá qué harías en cada punto.</p></div><div id="journalRows"></div></div>
+    </section>
+  </main>
+  <div id="toast" role="status"></div>
+  <footer><span>CHART REPLAY LAB</span><p>Herramienta educativa. No constituye asesoramiento financiero.</p><span>BUILT FOR PROCESS</span></footer>
+  <script src="app.js"></script>
+</body>
+</html>

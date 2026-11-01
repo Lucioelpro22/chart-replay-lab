@@ -13,13 +13,19 @@
 <body>
   <header class="topbar">
     <a class="brand" href="#"><span class="brand-mark"><i></i><i></i><i></i></span><span>CHART REPLAY <b>LAB</b></span></a>
-    <div class="top-actions"><span class="status"><i></i> Sesión local</span><button class="icon-btn" id="themeBtn" aria-label="Cambiar tema">◐</button></div>
+    <div class="top-actions"><button class="shortcut-btn" id="shortcutsBtn">⌨ ATAJOS</button><span class="status"><i></i> Sesión local</span><button class="icon-btn" id="themeBtn" aria-label="Cambiar tema">◐</button></div>
   </header>
 
   <main>
     <section class="hero">
       <div><p class="eyebrow">ENTRENAMIENTO DELIBERADO · SIN DINERO REAL</p><h1>Leé el mercado.<br><em>Una vela a la vez.</em></h1><p class="hero-copy">Practicá contexto, estructura y ejecución sin mirar el futuro. Cada decisión queda registrada para que midas tu proceso, no tu suerte.</p></div>
       <div class="score-card"><div class="score-ring"><strong id="globalScore">—</strong><span>SCORE</span></div><div><small>CALIDAD DE PROCESO</small><b id="scoreLabel">Completá tu primera decisión</b><p id="scoreSub">Tu evaluación aparecerá acá.</p></div></div>
+    </section>
+
+    <section class="session-plan">
+      <div class="plan-intro"><span>00</span><div><p class="eyebrow">ANTES DE MIRAR</p><h2>Definí tu plan de sesión</h2><p>Un buen replay empieza con límites claros.</p></div></div>
+      <div class="plan-fields"><label>OBJETIVO<input id="sessionGoal" placeholder="Ej: Esperar confirmación, no anticipar" maxlength="80"></label><label>SESGO INICIAL<select id="sessionBias"><option>Neutral</option><option>Alcista</option><option>Bajista</option></select></label><label>RIESGO MÁXIMO<select id="maxRisk"><option>0.5%</option><option selected>1.0%</option><option>1.5%</option><option>2.0%</option></select></label></div>
+      <span class="plan-saved" id="planSaved">GUARDADO LOCAL</span>
     </section>
 
     <section class="workspace">
@@ -47,18 +53,20 @@
         <label for="thesis">TESIS / CONTEXTO <span>OPCIONAL</span></label>
         <textarea id="thesis" maxlength="220" placeholder="Ej: Barrido de liquidez + CHOCH alcista en zona de demanda..."></textarea>
         <div class="tags"><button data-tag="Estructura">+ Estructura</button><button data-tag="Liquidez">+ Liquidez</button><button data-tag="Zona HTF">+ Zona HTF</button></div>
+        <div class="risk-box"><div><span>STOP</span><label><input id="stopPct" type="number" min="0.1" max="10" step="0.1" value="1.0">%</label></div><div><span>TARGET</span><label><input id="targetPct" type="number" min="0.1" max="20" step="0.1" value="2.0">%</label></div><div class="rr"><span>R:R PLAN</span><b id="rrValue">1 : 2.0</b></div></div>
         <button id="saveBtn" class="save-btn">REGISTRAR DECISIÓN <span>↵</span></button>
         <p class="privacy">⌁ Todo se guarda en tu navegador.</p>
       </aside>
     </section>
 
     <section class="review">
-      <div class="section-head"><div><p class="eyebrow">FEEDBACK LOOP</p><h2>Revisá tu proceso</h2></div><button id="clearBtn" class="text-btn">Limpiar sesión</button></div>
-      <div class="metrics"><article><small>DECISIONES</small><b id="decisionCount">0</b><p>registradas</p></article><article><small>DISCIPLINA</small><b id="discipline">—</b><p>esperas justificadas</p></article><article><small>CONFIANZA MEDIA</small><b id="avgConfidence">—</b><p>calibración</p></article><article><small>CONSISTENCIA</small><b id="consistency">—</b><p>calidad de tesis</p></article></div>
+      <div class="section-head"><div><p class="eyebrow">FEEDBACK LOOP</p><h2>Revisá tu proceso</h2></div><div class="review-actions"><button id="exportBtn" class="export-btn">⇩ EXPORTAR CSV</button><button id="clearBtn" class="text-btn">Limpiar sesión</button></div></div>
+      <div class="metrics"><article><small>DECISIONES</small><b id="decisionCount">0</b><p>registradas</p></article><article><small>DISCIPLINA</small><b id="discipline">—</b><p>esperas justificadas</p></article><article><small>CONFIANZA MEDIA</small><b id="avgConfidence">—</b><p>calibración</p></article><article><small>CONSISTENCIA</small><b id="consistency">—</b><p>calidad de tesis</p></article><article><small>PRECISIÓN</small><b id="accuracy">—</b><p>decisiones evaluadas</p></article></div>
       <div class="journal"><div class="journal-head"><b>DIARIO DE DECISIONES</b><span>Resultado evaluado 3 velas después</span></div><div id="emptyState" class="empty"><span>⌁</span><b>Todavía no hay decisiones</b><p>Avanzá por el gráfico y registrá qué harías en cada punto.</p></div><div id="journalRows"></div></div>
     </section>
   </main>
   <div id="toast" role="status"></div>
+  <dialog id="shortcutsDialog"><button class="dialog-close" id="closeShortcuts">×</button><p class="eyebrow">FLUJO RÁPIDO</p><h2>Atajos de teclado</h2><div class="shortcut-list"><span><kbd>←</kbd><kbd>→</kbd> Navegar velas</span><span><kbd>Espacio</kbd> Play / pausa</span><span><kbd>1</kbd> Long</span><span><kbd>2</kbd> Esperar</span><span><kbd>3</kbd> Short</span><span><kbd>Enter</kbd> Registrar</span></div></dialog>
   <footer><span>CHART REPLAY LAB</span><p>Herramienta educativa. No constituye asesoramiento financiero.</p><span>BUILT FOR PROCESS</span></footer>
   <script src="app.js"></script>
 </body>

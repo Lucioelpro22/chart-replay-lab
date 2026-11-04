@@ -9,6 +9,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="enhancements.css" />
 </head>
 <body>
   <header class="topbar">
@@ -37,9 +38,10 @@
         </div>
         <div class="chart-wrap"><canvas id="chart"></canvas><div class="chart-badge">VELA <b id="candleNo">30</b> / 100</div></div>
         <div class="replay-bar">
-          <div class="transport"><button id="resetBtn" title="Reiniciar">↺</button><button id="prevBtn" title="Vela anterior">‹</button><button class="play" id="playBtn" title="Reproducir">▶</button><button id="nextBtn" title="Siguiente vela">›</button></div>
+          <div class="transport"><button id="resetBtn" title="Reiniciar">↺</button><button id="jumpBackBtn" title="Retroceder 5 velas">−5</button><button id="prevBtn" title="Vela anterior">‹</button><button class="play" id="playBtn" title="Reproducir">▶</button><button id="nextBtn" title="Siguiente vela">›</button><button id="jumpForwardBtn" title="Avanzar 5 velas">+5</button></div>
           <div class="progress"><div><span id="progressFill"></span></div><small id="progressText">30% revelado</small></div>
-          <div class="speed"><span>VELOCIDAD</span><button data-speed="1500">0.5×</button><button data-speed="850" class="active">1×</button><button data-speed="400">2×</button></div>
+          <div class="session-tools"><span class="session-clock" id="sessionClock">00:00</span><label class="auto-pause"><input id="autoPause" type="checkbox" checked> Pausa al registrar</label></div>
+          <div class="speed"><span>VELOCIDAD</span><button data-speed="1500">0.5×</button><button data-speed="850" class="active">1×</button><button data-speed="400">2×</button><button data-speed="200">4×</button></div>
         </div>
       </div>
 
@@ -72,7 +74,8 @@
     </section>
   </main>
   <div id="toast" role="status"></div>
-  <dialog id="shortcutsDialog"><button class="dialog-close" id="closeShortcuts">×</button><p class="eyebrow">FLUJO RÁPIDO</p><h2>Atajos de teclado</h2><div class="shortcut-list"><span><kbd>←</kbd><kbd>→</kbd> Navegar velas</span><span><kbd>Espacio</kbd> Play / pausa</span><span><kbd>1</kbd> Long</span><span><kbd>2</kbd> Esperar</span><span><kbd>3</kbd> Short</span><span><kbd>Enter</kbd> Registrar</span></div></dialog>
+  <dialog id="shortcutsDialog"><button class="dialog-close" id="closeShortcuts">×</button><p class="eyebrow">FLUJO RÁPIDO</p><h2>Atajos de teclado</h2><div class="shortcut-list"><span><kbd>←</kbd><kbd>→</kbd> Navegar velas</span><span><kbd>Shift</kbd> + <kbd>←</kbd><kbd>→</kbd> Saltar 5 velas</span><span><kbd>Espacio</kbd> Play / pausa</span><span><kbd>1</kbd> Long</span><span><kbd>2</kbd> Esperar</span><span><kbd>3</kbd> Short</span><span><kbd>Enter</kbd> Registrar</span></div></dialog>
+  <dialog id="summaryDialog" class="summary-dialog"><button class="dialog-close" id="closeSummary">×</button><p class="eyebrow">INFORME DE SESIÓN</p><h2>Tu proceso, sin mirar el resultado</h2><div id="summaryContent"></div><div class="summary-actions"><button id="downloadSummaryBtn" class="outline-btn">⇩ DESCARGAR MARKDOWN</button><button id="continueBtn" class="export-btn">NUEVO ESCENARIO</button></div></dialog>
   <footer><span>CHART REPLAY LAB</span><p>Herramienta educativa. No constituye asesoramiento financiero.</p><span>BUILT FOR PROCESS</span></footer>
   <script src="app.js"></script>
 </body>

@@ -60,9 +60,15 @@
     </section>
 
     <section class="review">
-      <div class="section-head"><div><p class="eyebrow">FEEDBACK LOOP</p><h2>Revisá tu proceso</h2></div><div class="review-actions"><button id="exportBtn" class="export-btn">⇩ EXPORTAR CSV</button><button id="clearBtn" class="text-btn">Limpiar sesión</button></div></div>
+      <div class="section-head"><div><p class="eyebrow">FEEDBACK LOOP</p><h2>Revisá tu proceso</h2></div><div class="review-actions"><button id="finishBtn" class="export-btn">✓ FINALIZAR SESIÓN</button><button id="newScenarioBtn" class="outline-btn">NUEVO ESCENARIO</button><button id="exportBtn" class="outline-btn">⇩ CSV</button><button id="clearBtn" class="text-btn">Limpiar</button></div></div>
       <div class="metrics"><article><small>DECISIONES</small><b id="decisionCount">0</b><p>registradas</p></article><article><small>DISCIPLINA</small><b id="discipline">—</b><p>esperas justificadas</p></article><article><small>CONFIANZA MEDIA</small><b id="avgConfidence">—</b><p>calibración</p></article><article><small>CONSISTENCIA</small><b id="consistency">—</b><p>calidad de tesis</p></article><article><small>PRECISIÓN</small><b id="accuracy">—</b><p>decisiones evaluadas</p></article></div>
       <div class="journal"><div class="journal-head"><b>DIARIO DE DECISIONES</b><span>Resultado evaluado 3 velas después</span></div><div id="emptyState" class="empty"><span>⌁</span><b>Todavía no hay decisiones</b><p>Avanzá por el gráfico y registrá qué harías en cada punto.</p></div><div id="journalRows"></div></div>
+    </section>
+    <section class="session-history">
+      <div class="section-head"><div><p class="eyebrow">PROGRESO ACUMULADO</p><h2>Historial de prácticas</h2></div><div class="history-summary"><span>SESIONES <b id="totalSessions">0</b></span><span>SCORE MEDIO <b id="averageScore">—</b></span><span>MEJOR SCORE <b id="bestScore">—</b></span></div></div>
+      <div class="trend" id="scoreTrend" aria-label="Tendencia de score"></div>
+      <div class="session-list" id="sessionList"></div>
+      <div class="empty history-empty" id="historyEmpty"><span>◎</span><b>Tu progreso empieza con una sesión finalizada</b><p>Guardaremos el plan, las decisiones y el score para comparar prácticas.</p></div>
     </section>
   </main>
   <div id="toast" role="status"></div>
